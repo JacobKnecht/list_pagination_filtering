@@ -17,6 +17,7 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 const studentList = document.querySelectorAll('.student-item');
+const page = document.querySelector('div.page');
 console.log(studentList.length);
 
 
@@ -46,11 +47,33 @@ function showPage(list, pageNumber) {
    functionality to the pagination buttons.
 ***/
 function appendPageLinks(list) {
-  //determine the number of pagination buttons to generate
+  //generate the correct number of pagination buttons
   const studentsPerPage = 10;
   const numberOfButtons = Math.ceil(list.length / studentsPerPage);
-  console.log('Number of Students: ' + list.length);
-  console.log('Number of Buttons: ' + numberOfButtons);
+  //create container div to hold pagination buttons
+  const paginationDiv = document.createElement('div');
+  paginationDiv.className = 'pagination';
+  //create unordered list to contain the buttons
+  const ul = document.createElement('ul');
+  //dynamically generate pagination buttons
+  for (let i = 1; i <= numberOfButtons; i += 1) {
+    //create list item and link elements
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    //set link href class and text content
+    a.href = '#';
+    a.textContent = i;
+    //set the first 10 students to appear by default when page loads
+    if (i === 1) {
+      a.className = 'active';
+    }
+    //append link to list item and list item to unordered list
+    li.appendChild(a);
+    ul.appendChild(li);
+  }
+  //append unordered list to container div and then add container div to page
+  paginationDiv.appendChild(ul);
+  page.appendChild(paginationDiv);
 }
 
 appendPageLinks(studentList);
