@@ -82,10 +82,10 @@ function appendPageLinks(list) {
   //append unordered list to container div and then add container div to page
   paginationDiv.appendChild(ul);
   page.appendChild(paginationDiv);
-  //create event listener for pagination buttons
-  // a.addEventListener('click', () => {
-  //
-  // });
+  create event listener for pagination buttons
+  ul.addEventListener('click', () => {
+
+  });
 }
 
 appendPageLinks(studentList);
