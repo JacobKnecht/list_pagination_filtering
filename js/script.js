@@ -20,8 +20,6 @@ const page = document.querySelector('div.page');
 const studentList = document.querySelectorAll('.student-item');
 const defaultPage = 1;
 const studentsPerPage = 10;
-console.log(studentList.length);
-
 
 
 /***
@@ -36,7 +34,7 @@ console.log(studentList.length);
        you initially define the function, and it acts as a variable
        or a placeholder to represent the actual function `argument`
        that will be passed into the parens later when you call or
-       "invoke" the function
+       "invoke" the function -- DONE
 ***/
 function showPage(list, pageNumber) {
   const upperLimit = pageNumber * studentsPerPage; //10, 20, 30, etc
@@ -54,7 +52,7 @@ function showPage(list, pageNumber) {
 
 /***
    Create the `appendPageLinks function` to generate, append, and add
-   functionality to the pagination buttons.
+   functionality to the pagination buttons. --DONE
 ***/
 function appendPageLinks(list) {
   //generate the correct number of pagination buttons
