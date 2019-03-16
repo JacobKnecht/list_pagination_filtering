@@ -82,14 +82,19 @@ function appendPageLinks(list) {
   //append unordered list to container div and then add container div to page
   paginationDiv.appendChild(ul);
   page.appendChild(paginationDiv);
-  create event listener for pagination buttons
-  ul.addEventListener('click', () => {
-
+  //create event listener for pagination buttons
+  ul.addEventListener('click', (e) => {
+    const link = e.target;
+    if (link.className !== 'active') {
+      const oldActive = document.querySelector('a.active');
+      oldActive.className = '';
+      link.className = 'active';
+    }
   });
 }
 
 appendPageLinks(studentList);
-showPage(studentList, 2);
+//showPage(studentList, 2);
 
 
 
