@@ -18,6 +18,7 @@ FSJS project 2 - List Filter and Pagination
 ***/
 const page = document.querySelector('div.page');
 const studentList = document.querySelectorAll('.student-item');
+const defaultPage = 1;
 const studentsPerPage = 10;
 console.log(studentList.length);
 
@@ -71,7 +72,7 @@ function appendPageLinks(list) {
     //set link href class and text content
     a.href = '#';
     a.textContent = i;
-    //set the first 10 students to appear by default when page loads
+    //update the CSS class 'active' so that the first page is active by default
     if (i === 1) {
       a.className = 'active';
     }
@@ -84,17 +85,25 @@ function appendPageLinks(list) {
   page.appendChild(paginationDiv);
   //create event listener for pagination buttons
   ul.addEventListener('click', (e) => {
+    //store active link
     const link = e.target;
+    //remove CSS class 'active' from old active button and add it to current
+    //active button
     if (link.className !== 'active') {
       const oldActive = document.querySelector('a.active');
       oldActive.className = '';
       link.className = 'active';
     }
+    //only show the ten students that correspond with the current page
+    showPage(studentList, parseInt(link.textContent));
   });
 }
 
+//call showPage to set page 1 as default when loaded
+showPage(studentList, defaultPage);
+//call appendPageLinks to create and append pagination buttons and
+//run event listener
 appendPageLinks(studentList);
-//showPage(studentList, 2);
 
 
 
