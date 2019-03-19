@@ -97,11 +97,34 @@ function appendPageLinks(list) {
   });
 }
 
+//create a function to dynamically create, append, and add functionality to
+//a search component that can filter student results based on search value
+function appendSearchComponent() {
+  //create container div for search component
+  const searchDiv = document.createElement('div');
+  searchDiv.className = 'student-search';
+  //create the search text input and button elements
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.placeholder = 'Search for students...';
+  const searchButton = document.createElement('button');
+  searchButton.textContent = 'Search';
+  //append search text input and button to container div
+  searchDiv.appendChild(searchInput);
+  searchDiv.appendChild(searchButton);
+  //append container div to the page
+  const header = document.querySelector('div.page-header');
+  header.appendChild(searchDiv);
+}
+
 //call showPage to set page 1 as default when loaded
 showPage(studentList, defaultPage);
-//call appendPageLinks to create and append pagination buttons and
+//call appendPageLinks to create and append pagination buttons to the page and
 //run event listener
 appendPageLinks(studentList);
+//call appendSearchComponent to create and append search text input and
+//button to the page
+appendSearchComponent();
 
 
 
