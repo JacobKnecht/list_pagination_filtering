@@ -21,6 +21,8 @@ const studentList = document.querySelectorAll('.student-item');
 const paginationDiv = document.createElement('div');
 paginationDiv.className = 'pagination';
 const ul = document.createElement('ul');
+const message = document.createElement('span');
+const divBreak = document.createElement('br');
 const defaultPage = 1;
 const studentsPerPage = 10;
 
@@ -71,13 +73,6 @@ function appendPageLinks(list) {
   }
   //generate the correct number of pagination buttons
   const numberOfButtons = Math.ceil(list.length / studentsPerPage);
-
-  //create container div to hold pagination buttons
-  // const paginationDiv = document.createElement('div');
-  // paginationDiv.className = 'pagination';
-  //create unordered list to contain the buttons
-  // const ul = document.createElement('ul');
-
   //dynamically generate pagination buttons
   for (let i = 1; i <= numberOfButtons; i += 1) {
     //create list item and link elements
@@ -145,19 +140,36 @@ function appendSearchComponent(list) {
       //check for input text in the list of names and emails
       if (namesList[i].textContent.includes(input) ||
         emailList[i].textContent.includes(input)) {
-        // console.log(namesList[i].textContent);
-        // console.log(emailList[i].textContent);
+        //if the search input is in the student's name or email address,
+        //add that student to the filtered list
         filteredList.push(list[i]);
       }
     }
-
-    //code to test whether filterdList is empty/returns no results
-
-    //show list of filtered students
-    showPage(filteredList, defaultPage);
-    //paginate the list of filtered students
-    appendPageLinks(filteredList);
+    //code to test whether filterdList is empty/returns no results and
+    //create message notifying the user that there are no search results
+    message.textContent = 'Search for ' + "'" + searchInput.value + "'" +
+      ' returned no results.';
+    //message.style.textAlign = 'center';
+    if (filteredList.length === 0) {
+      //produce a message in container div for the search
+      searchDiv.appendChild(divBreak);
+      searchDiv.appendChild(message);
+    } else {
+      //remove the 'no results' message if it is on the page
+      if (message.parentNode === searchDiv) {
+        searchDiv.removeChild(message);
+        searchDiv.removeChild(divBreak);
+      }
+      //show list of filtered students
+      showPage(filteredList, defaultPage);
+      //paginate the list of filtered students
+      appendPageLinks(filteredList);
+    }
   });
+  //create an event listener for keyup in search input
+  // searchInput.addEventListener('keyup', (e) => {
+  //
+  // });
 }
 
 //call showPage to set page 1 as default when loaded
