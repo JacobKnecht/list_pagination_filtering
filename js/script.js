@@ -19,6 +19,7 @@ FSJS project 2 - List Filter and Pagination
 const page = document.querySelector('div.page');
 const studentList = document.querySelectorAll('.student-item');
 const paginationDiv = document.createElement('div');
+paginationDiv.className = 'pagination';
 const ul = document.createElement('ul');
 const defaultPage = 1;
 const studentsPerPage = 10;
@@ -43,6 +44,7 @@ function showPage(list, pageNumber) {
   for (let i = 0; i < studentList.length; i += 1) {
     studentList[i].style.display = 'none';
   }
+  //create bounds for student display depending on page number
   const upperLimit = pageNumber * studentsPerPage; //10, 20, 30, etc
   const lowerLimit = (pageNumber - 1) * studentsPerPage; //0, 10, 20, etc
   for (let i = 0; i < list.length; i += 1) {
@@ -61,13 +63,21 @@ function showPage(list, pageNumber) {
    functionality to the pagination buttons. --DONE
 ***/
 function appendPageLinks(list) {
+  //clear the container div of previous contents if it has any
+  if (ul.hasChildNodes()) {
+    while (ul.hasChildNodes()) {
+      ul.removeChild(ul.firstChild);
+    }
+  }
   //generate the correct number of pagination buttons
   const numberOfButtons = Math.ceil(list.length / studentsPerPage);
+
   //create container div to hold pagination buttons
   // const paginationDiv = document.createElement('div');
-  paginationDiv.className = 'pagination';
+  // paginationDiv.className = 'pagination';
   //create unordered list to contain the buttons
   // const ul = document.createElement('ul');
+
   //dynamically generate pagination buttons
   for (let i = 1; i <= numberOfButtons; i += 1) {
     //create list item and link elements
@@ -99,7 +109,7 @@ function appendPageLinks(list) {
       link.className = 'active';
     }
     //only show the ten students that correspond with the current page
-    showPage(studentList, parseInt(link.textContent));
+    showPage(list, parseInt(link.textContent));
   });
 }
 
@@ -140,6 +150,9 @@ function appendSearchComponent(list) {
         filteredList.push(list[i]);
       }
     }
+
+    //code to test whether filterdList is empty/returns no results
+
     //show list of filtered students
     showPage(filteredList, defaultPage);
     //paginate the list of filtered students
