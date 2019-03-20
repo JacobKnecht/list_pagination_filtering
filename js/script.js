@@ -18,6 +18,8 @@ FSJS project 2 - List Filter and Pagination
 ***/
 const page = document.querySelector('div.page');
 const studentList = document.querySelectorAll('.student-item');
+const paginationDiv = document.createElement('div');
+const ul = document.createElement('ul');
 const defaultPage = 1;
 const studentsPerPage = 10;
 
@@ -37,6 +39,10 @@ const studentsPerPage = 10;
        "invoke" the function -- DONE
 ***/
 function showPage(list, pageNumber) {
+  //clear the page of any students
+  for (let i = 0; i < studentList.length; i += 1) {
+    studentList[i].style.display = 'none';
+  }
   const upperLimit = pageNumber * studentsPerPage; //10, 20, 30, etc
   const lowerLimit = (pageNumber - 1) * studentsPerPage; //0, 10, 20, etc
   for (let i = 0; i < list.length; i += 1) {
@@ -58,10 +64,10 @@ function appendPageLinks(list) {
   //generate the correct number of pagination buttons
   const numberOfButtons = Math.ceil(list.length / studentsPerPage);
   //create container div to hold pagination buttons
-  const paginationDiv = document.createElement('div');
+  // const paginationDiv = document.createElement('div');
   paginationDiv.className = 'pagination';
   //create unordered list to contain the buttons
-  const ul = document.createElement('ul');
+  // const ul = document.createElement('ul');
   //dynamically generate pagination buttons
   for (let i = 1; i <= numberOfButtons; i += 1) {
     //create list item and link elements
@@ -99,7 +105,7 @@ function appendPageLinks(list) {
 
 //create a function to dynamically create, append, and add functionality to
 //a search component that can filter student results based on search value
-function appendSearchComponent() {
+function appendSearchComponent(list) {
   //create container div for search component
   const searchDiv = document.createElement('div');
   searchDiv.className = 'student-search';
@@ -115,6 +121,30 @@ function appendSearchComponent() {
   //append container div to the page
   const header = document.querySelector('div.page-header');
   header.appendChild(searchDiv);
+  //create event listener for click on search button
+  searchButton.addEventListener('click', (e) => {
+    //create a list of student names and email addresses, as well as a list to
+    //hold the filtered list of students based on search input
+    const filteredList = [];
+    const namesList = document.querySelectorAll('div.student-details h3');
+    const emailList = document.querySelectorAll('div.student-details span.email');
+    //search for input text in student's name or email address
+    for (let i = 0; i < list.length; i += 1) {
+      //turn input text to lower case to make program more robust
+      const input = searchInput.value.toLowerCase();
+      //check for input text in the list of names and emails
+      if (namesList[i].textContent.includes(input) ||
+        emailList[i].textContent.includes(input)) {
+        // console.log(namesList[i].textContent);
+        // console.log(emailList[i].textContent);
+        filteredList.push(list[i]);
+      }
+    }
+    //show list of filtered students
+    showPage(filteredList, defaultPage);
+    //paginate the list of filtered students
+    appendPageLinks(filteredList);
+  });
 }
 
 //call showPage to set page 1 as default when loaded
@@ -124,7 +154,7 @@ showPage(studentList, defaultPage);
 appendPageLinks(studentList);
 //call appendSearchComponent to create and append search text input and
 //button to the page
-appendSearchComponent();
+appendSearchComponent(studentList);
 
 
 
