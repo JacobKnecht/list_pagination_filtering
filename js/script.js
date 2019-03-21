@@ -1,7 +1,8 @@
 /*
 * Treehouse Techdegree Project 2 - List Pagination and Filtering
 * Jacob Knecht
-* 3/20/2019
+* 3/21/2019
+* Note: I am hoping to recieve a grade of 'Exceeds Expectations.'
 */
 
 //global variable declarations

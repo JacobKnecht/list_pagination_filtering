@@ -2,7 +2,8 @@
 
 Objective:
 This project creates pagination buttons for a list of student information. It
-also allows users to search the list of students.
+also allows users to search the list of students. It is designed to meet the
+requirements for an 'Exceeds Expectations' grade.
 
 Functionality:
 The page displays 10 students per page, and provides the buttons at the bottom
