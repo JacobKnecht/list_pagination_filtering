@@ -4,7 +4,7 @@
 * 3/20/2019
 */
 
-//variable declarations
+//global variable declarations
 const page = document.querySelector('div.page');
 const studentList = document.querySelectorAll('.student-item');
 const paginationDiv = document.createElement('div');
