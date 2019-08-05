@@ -1,4 +1,4 @@
-# Treehouse Techdegree Project 2 - List Pagination and Filtering
+# List Pagination and Filtering
 
 Objective:
 This project creates pagination buttons for a list of student information. It
@@ -16,12 +16,12 @@ The program first declares global variables. These include various DOM elements
 as well as variables representing the default page number to show on screen
 when the page load and the default number of students to display on each page.
 It includes the following functions:
-  1.) showPage(), which takes arguments for a list and a page number. This
+  1. showPage(), which takes arguments for a list and a page number. This
       function begins by clearing the page of any students, then calculates the
       upper and lower bounds for students to display from the provided list
       based on the page number provided. It changes the CSS 'display' property
       to show the students within these bounds and hides all of the others.
-  2.) appendPageLinks(), which takes an argument for a list. It first clears
+  2. appendPageLinks(), which takes an argument for a list. It first clears
       the container div of the pagination buttons, then calculates the proper
       number of buttons. These buttons are generated dynamically by creating
       link and list item elements, and are then added to the unordered list in
@@ -30,7 +30,7 @@ It includes the following functions:
       previous pagination button and reassigns that class to the button that
       has been clicked, before calling showPage() to display the appropriate
       10 students for the new page.
-  3.) performSearch(), which takes arguments for a list, search input, and a
+  3. performSearch(), which takes arguments for a list, search input, and a
       container div. Creates a new list to hold students filtered by the
       search. It selects all of the student names and email addresses, and then
       compares the search input to the lists of names and email addresses for a
@@ -41,13 +41,14 @@ It includes the following functions:
       did have results, this message is removed (if present) and showPage() and
       appendPageLinks() are called to display the filtered list of students and
       the proper number of pagination buttons.
-  4.) appendSearchComponent(), which takes an argument for a list. This
+  4. appendSearchComponent(), which takes an argument for a list. This
       function creates elements for a container div, a text input and a button
       and appends them to the page's header. It also provides two event
       listeners: one for clicks on the search button and one for keyup on the
       text input. Both of these event listeners call performSearch() by passing
       arguments for the provided list and the created search input and
       container div.
+
 The program concludes by calling showPage() using the list of students and the
 default page to be displayed when the web page loads. It calls appendPageLinks()
 and passes the list of students and calls appendSearchComponent() and passes
